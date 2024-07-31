@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using CommunityToolkit.Maui;
+using ConvertCoin.ViewModel;
+using Microsoft.Extensions.Logging;
 
 namespace ConvertCoin
 {
@@ -8,12 +10,14 @@ namespace ConvertCoin
         {
             var builder = MauiApp.CreateBuilder();
             builder
-                .UseMauiApp<App>()
+               .UseMauiApp<App>()
+               .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+                builder.Services.AddSingleton<LoginViewModel>();
 
 #if DEBUG
     		builder.Logging.AddDebug();

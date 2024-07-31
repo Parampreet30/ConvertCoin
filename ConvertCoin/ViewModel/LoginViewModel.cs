@@ -18,20 +18,25 @@ public partial class LoginViewModel : ObservableObject
     string password;
 
     // Command to be executed when the login button is clicked
-        public IAsyncRelayCommand LoginCommand { get; }
+    public IAsyncRelayCommand LoginCommand { get; }
 
-    
+    public LoginViewModel()
+        {
+            // Initializes the login command with the LoginAsync method
+            LoginCommand = new AsyncRelayCommand(LoginAsync);
+        }
 
-    [RelayCommand]
-    void Login(){
-
-        //login TODO
-
-    }
+        // Asynchronously handles the login process
+        private async Task LoginAsync()
+        {
+            // TODO: Implement login logic here
+            // - Validate user credentials
+            // - Call authentication service
+            // - Handle successful login (e.g., navigate to main page)
+            // - Handle failed login (e.g., display error message)
+        }
     [RelayCommand]
     void ForgotPassword() {
-
         //forget password
-
     }
 }
