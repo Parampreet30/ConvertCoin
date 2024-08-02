@@ -2,9 +2,9 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ConvertCoin.MainPage"
-              xmlns:viewmodel="clr-namespace:ConvertCoin.ViewModel"
-              x:DataType="viewmodel:HomeViewModel"
-             >
+              xmlns:viewmodels="clr-namespace:ConvertCoin.ViewModel"
+              xmlns:models="clr-namespace:ConvertCoin.model"
+              x:DataType="viewmodels:HomeViewModel">
 
 
        <VerticalStackLayout Padding="20">
@@ -102,7 +102,7 @@
                                    WidthRequest="45"/>
 
                             <Button Text="get"
-                                          Command="{Binding GetRateCommand}"/>
+                                          Command="{Binding SwitchCountriesCommand}"/>
 
                             <Label Text="Converted Amount"
                                    FontSize="Medium"

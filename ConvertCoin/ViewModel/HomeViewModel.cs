@@ -33,19 +33,16 @@ namespace ConvertCoin.ViewModel
         [RelayCommand]
         async Task SwitchCountries()
         {
-            try
-        {
-            var partsCollection = await ExchangeApi.GetRate();
+            Console.WriteLine("Could not start MAUI: ");
+            
+            /*var partsCollection = await ExchangeApi.GetRate();
 
             MainThread.BeginInvokeOnMainThread(() =>
             {
                 var p = partsCollection;
             });
-        }
-        finally
-        {    
-           
-        }
+            */
+        
         }
         [RelayCommand]
         void Country() { }
