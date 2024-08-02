@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:ConvertCoin.ViewModels"
+             xmlns:models="clr-namespace:ConvertCoin.model"
+             x:Class="ConvertCoin.Views.LoginView"
+             x:DataType="viewmodels:LoginViewModel">
+<ContentPage.BindingContext>
+    <viewmodels:LoginViewModel/>
+</ContentPage.BindingContext>
+
+<StackLayout Padding="25" Spacing="30">
+    <Label Text="Email"/>
+    <Entry x:Name="Email" Placeholder="Email Address" Text="{Binding Email}"/>
+    <Label Text="Password"/>
+    <Entry x:Name="Password" Placeholder="Password" Text="{Binding Password}" IsPassword="True"/>
+
+    <Button Text="Sign In" Command="{Binding SignInCommand}"/>
+
+    <Button Text="Create Account" Command="{Binding SignUpCommand}"/>
+
+    <Label x:Name="Result" Text="{Binding Message}"/>
+
+</StackLayout>
+    
+</ContentPage>

@@ -1,5 +1,4 @@
 ﻿using CommunityToolkit.Maui;
-using ConvertCoin.ViewModel;
 using Microsoft.Extensions.Logging;
 
 namespace ConvertCoin
@@ -17,7 +16,7 @@ namespace ConvertCoin
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
-                builder.Services.AddSingleton<LoginViewModel>();
+                
 
 #if DEBUG
     		builder.Logging.AddDebug();
