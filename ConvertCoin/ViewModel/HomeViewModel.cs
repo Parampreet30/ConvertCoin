@@ -5,7 +5,7 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace ConvertCoin.ViewModel
 {
-    public partial class HomeViewModel : ObservableObject
+    public partial class HomeViewModel : ObservableRecipient
     {
         /*
          amount: this will have the currency of the country that is to be converted
@@ -14,6 +14,12 @@ namespace ConvertCoin.ViewModel
         convertedAmountCountry: this will be the desired country for which the currency is being converted  
         
          */
+
+         public IAsyncRelayCommand GetRateCommand { get;}
+
+         public HomeViewModel(){
+                GetRateCommand = new AsyncRelayCommand(SwitchCountries);
+         }
 
         [ObservableProperty]
         double amount;
@@ -25,9 +31,21 @@ namespace ConvertCoin.ViewModel
         string convertedAmountCountry;
 
         [RelayCommand]
-        void SwitchCountries()
+        async Task SwitchCountries()
         {
+            try
+        {
+            var partsCollection = await ExchangeApi.GetRate();
 
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                var p = partsCollection;
+            });
+        }
+        finally
+        {    
+           
+        }
         }
         [RelayCommand]
         void Country() { }
