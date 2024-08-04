@@ -2,6 +2,7 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.Diagnostics;
 
 namespace ConvertCoin.ViewModel
 {
@@ -15,11 +16,12 @@ namespace ConvertCoin.ViewModel
         
          */
 
-         public IAsyncRelayCommand GetRateCommand { get;}
+        public IAsyncRelayCommand GetRateCommand { get; set; }
 
-         public HomeViewModel(){
-                GetRateCommand = new AsyncRelayCommand(SwitchCountries);
-         }
+        public HomeViewModel()
+        {
+            GetRateCommand = new AsyncRelayCommand(SwitchCountries);
+        }
 
         [ObservableProperty]
         double amount;
@@ -33,16 +35,24 @@ namespace ConvertCoin.ViewModel
         [RelayCommand]
         async Task SwitchCountries()
         {
-            Console.WriteLine("Could not start MAUI: ");
-            
-            /*var partsCollection = await ExchangeApi.GetRate();
+            Debug.WriteLine("SwitchCountries method called");
+            var partsCollection = await ExchangeApi.GetRate();
 
             MainThread.BeginInvokeOnMainThread(() =>
             {
-                var p = partsCollection;
+                Debug.WriteLine("Updating UI with the exchange rate data");
+                // Do something with partsCollection, for example:
+                if (partsCollection != null && partsCollection.Any())
+                {
+                    // Assuming partsCollection contains exchange rates
+                    // Update your properties here based on partsCollection data
+                    //ConvertedAmount = partsCollection.First().Rate * Amount;
+                }
+                else
+                {
+                    Debug.WriteLine("Failed to get exchange rate data");
+                }
             });
-            */
-        
         }
         [RelayCommand]
         void Country() { }
