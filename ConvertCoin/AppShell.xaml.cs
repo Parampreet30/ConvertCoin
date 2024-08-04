@@ -1,4 +1,6 @@
-﻿namespace ConvertCoin
+﻿
+using ConvertCoin.Views;
+namespace ConvertCoin
 {
     public partial class AppShell : Shell
     {

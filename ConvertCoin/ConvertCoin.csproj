@@ -67,6 +67,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\HomePage1.xaml.cs">
+	    <DependentUpon>HomePage1.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="Views\LoginView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
