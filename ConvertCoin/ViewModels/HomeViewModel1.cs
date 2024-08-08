@@ -26,12 +26,14 @@ namespace ConvertCoin.ViewModels
 
         public HomeViewModel1()
         {
+
             GetRateCommand = new AsyncRelayCommand(SwitchCountries);
             Items = new ObservableCollection<string>
             {
                 "CAD",
                 "INR"
             };
+            string Result;
         }
 
         [ObservableProperty]
@@ -50,25 +52,28 @@ namespace ConvertCoin.ViewModels
         async Task SwitchCountries()
         {
             Debug.WriteLine("SwitchCountries method called");
-            var exchangeRates = await ExchangeApi.GetRate();
-            Debug.WriteLine( exchangeRates.ToString());
+            var exchangeRates = await ExchangeApi.GetRate(selectedItem);
+            Debug.WriteLine(exchangeRates);
             MainThread.BeginInvokeOnMainThread(() =>
             {
                 Debug.WriteLine(exchangeRates.conversion_rates["CAD"]);
                 Debug.WriteLine("Updating UI with the exchange rate data");
-                
+
+               Result = (100 * exchangeRates.conversion_rates[selectedItem]).ToString();
+                result = (100 * exchangeRates.conversion_rates[selectedItem]).ToString();
+
                 // Do something with partsCollection, for example:
                 //if (partsCollection != null && partsCollection.Any())
                 //{
-                    // Assuming partsCollection contains exchange rates
-                    // Update your properties here based on partsCollection data
-                    //ConvertedAmount = partsCollection.First().Rate * Amount;
-                 //Debug.WriteLine( partsCollection);
+                // Assuming partsCollection contains exchange rates
+                // Update your properties here based on partsCollection data
+                //ConvertedAmount = partsCollection.First().Rate * Amount;
+                //Debug.WriteLine( partsCollection);
 
                 //}
                 //else
                 //{
-                  //  Debug.WriteLine("Failed to get exchange rate data");
+                //  Debug.WriteLine("Failed to get exchange rate data");
                 //}
             });
         }
@@ -80,8 +85,10 @@ namespace ConvertCoin.ViewModels
 
         [ObservableProperty]
         public string selectedItem;
-        
 
+        [ObservableProperty]
+        public string result;
+        
      
 
 

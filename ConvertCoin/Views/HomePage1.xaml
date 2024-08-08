@@ -129,7 +129,7 @@
                            HorizontalOptions="FillAndExpand"
                            Grid.Row="0"
                            Grid.Column="1"
-                           Text="{Binding Amount, Mode=TwoWay}"
+                           Text="{Binding Result, Mode=TwoWay}"
                            Keyboard="Numeric"/>
                 </Grid>
 
