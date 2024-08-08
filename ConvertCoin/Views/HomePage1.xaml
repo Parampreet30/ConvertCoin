@@ -59,14 +59,9 @@
 
 
                         <Picker x:Name="picker"
+                        ItemsSource="{Binding Items}"
         Title="Select Currency">
-                            <Picker.ItemsSource>
-                                <x:Array Type="{x:Type x:String}">
-                                    <x:String>Canada
-                                    </x:String>
-                                    <x:String>INR</x:String>
-                                </x:Array>
-                            </Picker.ItemsSource>
+                            
                         </Picker>
                     </HorizontalStackLayout>
 
@@ -78,15 +73,9 @@
                            Keyboard="Numeric"/>
                 </Grid>
 
-                <Image Aspect="AspectFit"
-                       Source="switch_image.png"
-                       SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                       HeightRequest="45"
-                       Margin="15"
-                       WidthRequest="45"/>
+                
 
-                <Button Text="Get Rate"
-                        Command="{Binding GetRateCommand}"/>
+                
 
                 <Label Text="Converted Amount"
                        FontSize="Medium"
@@ -133,6 +122,9 @@
                            Keyboard="Numeric"/>
                 </Grid>
 
+                <Button Text="Get Rate"
+                        Command="{Binding GetRateCommand}"/>
+
                 <Label Text="{Binding ConvertedAmount}"
                        FontSize="Medium"/>
             </VerticalStackLayout>
@@ -140,7 +132,7 @@
 
         <Label Text="Indicative Exchange Rate"
                FontSize="Medium"/>
-        <Label Text="1 SGD = 0.7367 USD"
+        <Label Text=""
                FontSize="Medium"/>
     </VerticalStackLayout>
 </ContentPage>

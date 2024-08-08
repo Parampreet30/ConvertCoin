@@ -23,6 +23,8 @@ namespace ConvertCoin.ViewModels
        */
 
         public IAsyncRelayCommand GetRateCommand { get; }
+        [ObservableProperty]
+        private string convertedAmount;
 
         public HomeViewModel1()
         {
@@ -34,15 +36,15 @@ namespace ConvertCoin.ViewModels
                 "INR"
             };
             string Result;
+            double Amount;
         }
 
         [ObservableProperty]
         private ObservableCollection<string> items;
 
         [ObservableProperty]
-        double amount;
-        [ObservableProperty]
-        double convertedAmount;
+        decimal amount;
+        
         [ObservableProperty]
         string amountSelectedCountry;
         [ObservableProperty]
@@ -59,22 +61,11 @@ namespace ConvertCoin.ViewModels
                 Debug.WriteLine(exchangeRates.conversion_rates["CAD"]);
                 Debug.WriteLine("Updating UI with the exchange rate data");
 
-               Result = (100 * exchangeRates.conversion_rates[selectedItem]).ToString();
-                result = (100 * exchangeRates.conversion_rates[selectedItem]).ToString();
+                Result = (100 * exchangeRates.conversion_rates[selectedItem]).ToString();
+                Result = (amount * exchangeRates.conversion_rates[selectedItem]).ToString();
+                ConvertedAmount = $"{amount} INR = {result} {selectedItem}";
 
-                // Do something with partsCollection, for example:
-                //if (partsCollection != null && partsCollection.Any())
-                //{
-                // Assuming partsCollection contains exchange rates
-                // Update your properties here based on partsCollection data
-                //ConvertedAmount = partsCollection.First().Rate * Amount;
-                //Debug.WriteLine( partsCollection);
-
-                //}
-                //else
-                //{
-                //  Debug.WriteLine("Failed to get exchange rate data");
-                //}
+               
             });
         }
         [RelayCommand]
