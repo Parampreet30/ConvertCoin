@@ -40,21 +40,25 @@ namespace ConvertCoin.ViewModels
         {
             Debug.WriteLine("SwitchCountries method called");
             var partsCollection = await ExchangeApi.GetRate();
-
+            Debug.WriteLine( partsCollection);
+            decimal cr = partsCollection.conversion_rates["CAD"];
             MainThread.BeginInvokeOnMainThread(() =>
             {
+                Debug.WriteLine(partsCollection.conversion_rates["CAD"]);
                 Debug.WriteLine("Updating UI with the exchange rate data");
                 // Do something with partsCollection, for example:
-                if (partsCollection != null && partsCollection.Any())
-                {
+                //if (partsCollection != null && partsCollection.Any())
+                //{
                     // Assuming partsCollection contains exchange rates
                     // Update your properties here based on partsCollection data
                     //ConvertedAmount = partsCollection.First().Rate * Amount;
-                }
-                else
-                {
-                    Debug.WriteLine("Failed to get exchange rate data");
-                }
+                 //Debug.WriteLine( partsCollection);
+
+                //}
+                //else
+                //{
+                  //  Debug.WriteLine("Failed to get exchange rate data");
+                //}
             });
         }
         [RelayCommand]

@@ -13,6 +13,6 @@ namespace ConvertCoin.Data
         public long TimeNextUpdateUnix { get; set; }
         public string TimeNextUpdateUtc { get; set; }
         public string BaseCode { get; set; }
-        public Dictionary<string, decimal> ConversionRates { get; set; }
+        public Dictionary<string, decimal> conversion_rates { get; set; }
     }
 }

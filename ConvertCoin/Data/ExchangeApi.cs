@@ -20,19 +20,26 @@ public class ExchangeApi
 
     }
 
-    public static async Task<IEnumerable<ExchangeRateResponse>> GetRate()
+    public static async Task<ExchangeRateResponse> GetRate()
     {
         if (Connectivity.Current.NetworkAccess != NetworkAccess.Internet)
-            return new List<ExchangeRateResponse>();
+            return new ExchangeRateResponse();
 
         var client = await GetClient();
-    string result = await client.GetStringAsync($"{Url}");
+        string result = await client.GetStringAsync($"{Url}");
 
-    return JsonSerializer.Deserialize<List<ExchangeRateResponse>>(result, new JsonSerializerOptions
+        var elevadoresModels = JsonSerializer.Deserialize<ExchangeRateResponse>(result, new JsonSerializerOptions
         {
             PropertyNameCaseInsensitive = true,
-        });     
+        });
+       
+
+
+        return JsonSerializer.Deserialize<ExchangeRateResponse>(result, new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true,
+        });
     }
-    
+
 
 }
