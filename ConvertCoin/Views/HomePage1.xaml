@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:ConvertCoin.ViewModels"
+             x:DataType="viewmodels:HomeViewModel1"
+             x:Class="ConvertCoin.Views.HomePage1" >
+
+    <ContentPage.BindingContext>
+        <viewmodels:HomeViewModel1/>
+    </ContentPage.BindingContext>
+    <VerticalStackLayout Padding="20">
+        <Label Text="Currency Converter"
+               FontSize="45"
+               HorizontalOptions="Center"
+               FontAttributes="Bold"/>
+
+        <Label Padding="20"
+               Text="Check live rate, set rate alerts, receive notification and more"
+               FontSize="Medium"
+               HorizontalOptions="Center"/>
+
+        <Frame BackgroundColor="White"
+               CornerRadius="14"
+               HasShadow="True"
+               Padding="10"
+               Margin="20">
+
+            <VerticalStackLayout>
+                <Label Text="Amount"
+                       FontSize="Medium"/>
+
+                <Grid RowDefinitions="Auto, Auto, Auto"
+                      ColumnDefinitions="Auto, Auto, Auto">
+
+                    <HorizontalStackLayout HorizontalOptions="FillAndExpand"
+                                           Grid.Row="0"
+                                           Grid.Column="0">
+
+                        <Frame HeightRequest="60"
+                               WidthRequest="60"
+                               CornerRadius="30"
+                               HorizontalOptions="Center"
+                               IsClippedToBounds="True"
+                               Padding="0"
+                               BorderColor="Gray"
+                               Margin="0,0,10,0">
+
+                            <Image Margin="0,0,10,0"
+                                   Aspect="AspectFit"
+                                   Source="dotnet_bot.png"
+                                   SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                                   HeightRequest="60"
+                                   WidthRequest="60"
+                                   VerticalOptions="Center"/>
+                        </Frame>
+
+                        <Label Text="INR"
+                               FontSize="30"
+                               FontAttributes="Bold"/>
+
+                        <Image Margin="0,0,10,0"
+                               Aspect="AspectFit"
+                               Source="drop_drop.png"
+                               SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                               HeightRequest="30"
+                               WidthRequest="30"/>
+                    </HorizontalStackLayout>
+
+                    <Entry WidthRequest="260"
+                           HorizontalOptions="FillAndExpand"
+                           Grid.Row="0"
+                           Grid.Column="1"
+                           Text="{Binding Amount, Mode=TwoWay}"
+                           Keyboard="Numeric"/>
+                </Grid>
+
+                <Image Aspect="AspectFit"
+                       Source="switch_image.png"
+                       SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                       HeightRequest="45"
+                       Margin="15"
+                       WidthRequest="45"/>
+
+                <Button Text="Get Rate"
+                        Command="{Binding GetRateCommand}"/>
+
+                <Label Text="Converted Amount"
+                       FontSize="Medium"
+                       Margin="10"/>
+
+                <Grid RowDefinitions="Auto, Auto, Auto"
+                      ColumnDefinitions="Auto, Auto, Auto">
+
+                    <HorizontalStackLayout HorizontalOptions="FillAndExpand"
+                                           Grid.Row="0"
+                                           Grid.Column="0">
+
+                        <Frame HeightRequest="60"
+                               WidthRequest="60"
+                               CornerRadius="30"
+                               HorizontalOptions="Center"
+                               IsClippedToBounds="True"
+                               Padding="0"
+                               BorderColor="Gray"
+                               Margin="0,0,10,0">
+
+                            <Image Margin="0,0,10,0"
+                                   Aspect="AspectFit"
+                                   Source="dotnet_bot.png"
+                                   SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                                   HeightRequest="60"
+                                   WidthRequest="60"
+                                   VerticalOptions="Center"/>
+                        </Frame>
+
+                        <Label Text="INR"
+                               FontSize="30"
+                               FontAttributes="Bold"/>
+
+                        <Image Margin="0,0,10,0"
+                               Aspect="AspectFit"
+                               Source="drop_drop.png"
+                               SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                               HeightRequest="30"
+                               WidthRequest="30"/>
+                    </HorizontalStackLayout>
+
+                    <Entry WidthRequest="260"
+                           HorizontalOptions="FillAndExpand"
+                           Grid.Row="0"
+                           Grid.Column="1"
+                           Text="{Binding Amount, Mode=TwoWay}"
+                           Keyboard="Numeric"/>
+                </Grid>
+
+                <Label Text="{Binding ConvertedAmount}"
+                       FontSize="Medium"/>
+            </VerticalStackLayout>
+        </Frame>
+
+        <Label Text="Indicative Exchange Rate"
+               FontSize="Medium"/>
+        <Label Text="1 SGD = 0.7367 USD"
+               FontSize="Medium"/>
+    </VerticalStackLayout>
+</ContentPage>

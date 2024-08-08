@@ -12,4 +12,8 @@
         ContentTemplate="{DataTemplate views:LoginView}"
         Route="LoginView"/>
 
+    <ShellContent Title="Home" ContentTemplate="{DataTemplate views:HomePage1}">
+       
+    </ShellContent>
+
 </Shell>
