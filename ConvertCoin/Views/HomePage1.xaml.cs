@@ -6,7 +6,6 @@ namespace ConvertCoin.Views
         {
             InitializeComponent();
         }
-
         
     }
 

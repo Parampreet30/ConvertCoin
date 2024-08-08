@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
+using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace ConvertCoin.ViewModels
 {
@@ -24,7 +27,15 @@ namespace ConvertCoin.ViewModels
         public HomeViewModel1()
         {
             GetRateCommand = new AsyncRelayCommand(SwitchCountries);
+            Items = new ObservableCollection<string>
+            {
+                "CAD",
+                "INR"
+            };
         }
+
+        [ObservableProperty]
+        private ObservableCollection<string> items;
 
         [ObservableProperty]
         double amount;
@@ -39,13 +50,13 @@ namespace ConvertCoin.ViewModels
         async Task SwitchCountries()
         {
             Debug.WriteLine("SwitchCountries method called");
-            var partsCollection = await ExchangeApi.GetRate();
-            Debug.WriteLine( partsCollection);
-            decimal cr = partsCollection.conversion_rates["CAD"];
+            var exchangeRates = await ExchangeApi.GetRate();
+            Debug.WriteLine( exchangeRates.ToString());
             MainThread.BeginInvokeOnMainThread(() =>
             {
-                Debug.WriteLine(partsCollection.conversion_rates["CAD"]);
+                Debug.WriteLine(exchangeRates.conversion_rates["CAD"]);
                 Debug.WriteLine("Updating UI with the exchange rate data");
+                
                 // Do something with partsCollection, for example:
                 //if (partsCollection != null && partsCollection.Any())
                 //{
@@ -66,6 +77,12 @@ namespace ConvertCoin.ViewModels
 
         [RelayCommand]
         void CovertedCountries() { }
+
+        [ObservableProperty]
+        public string selectedItem;
+        
+
+     
 
 
     }

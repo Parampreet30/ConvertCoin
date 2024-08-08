@@ -36,6 +36,8 @@
                                            Grid.Row="0"
                                            Grid.Column="0">
 
+                        
+
                         <Frame HeightRequest="60"
                                WidthRequest="60"
                                CornerRadius="30"
@@ -54,16 +56,18 @@
                                    VerticalOptions="Center"/>
                         </Frame>
 
-                        <Label Text="INR"
-                               FontSize="30"
-                               FontAttributes="Bold"/>
 
-                        <Image Margin="0,0,10,0"
-                               Aspect="AspectFit"
-                               Source="drop_drop.png"
-                               SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                               HeightRequest="30"
-                               WidthRequest="30"/>
+
+                        <Picker x:Name="picker"
+        Title="Select Currency">
+                            <Picker.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>Canada
+                                    </x:String>
+                                    <x:String>INR</x:String>
+                                </x:Array>
+                            </Picker.ItemsSource>
+                        </Picker>
                     </HorizontalStackLayout>
 
                     <Entry WidthRequest="260"
@@ -113,16 +117,12 @@
                                    VerticalOptions="Center"/>
                         </Frame>
 
-                        <Label Text="INR"
-                               FontSize="30"
-                               FontAttributes="Bold"/>
-
-                        <Image Margin="0,0,10,0"
-                               Aspect="AspectFit"
-                               Source="drop_drop.png"
-                               SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                               HeightRequest="30"
-                               WidthRequest="30"/>
+                        <Picker x:Name="picker2"
+                               Title="Select Currency"
+                                ItemsSource="{Binding Items}"
+                                SelectedItem="{Binding SelectedItem}">
+                            
+                        </Picker>
                     </HorizontalStackLayout>
 
                     <Entry WidthRequest="260"
