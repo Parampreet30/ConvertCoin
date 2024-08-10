@@ -62,7 +62,7 @@ namespace ConvertCoin.ViewModels
                 Debug.WriteLine("Updating UI with the exchange rate data");
 
                 Result = (100 * exchangeRates.conversion_rates[selectedItem]).ToString();
-                Result = (amount * exchangeRates.conversion_rates[selectedItem]).ToString();
+                Result = (amount * exchangeRates.conversion_rates[targetSelectedItem]).ToString();
                 ConvertedAmount = $"{amount} INR = {result} {selectedItem}";
 
                
