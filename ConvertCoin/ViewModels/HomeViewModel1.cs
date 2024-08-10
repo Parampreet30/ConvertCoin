@@ -12,7 +12,7 @@ using System.Collections.ObjectModel;
 
 namespace ConvertCoin.ViewModels
 {
-    public partial class HomeViewModel1: ObservableRecipient
+    public partial class HomeViewModel1 : ObservableRecipient
     {
         /*
        amount: this will have the currency of the country that is to be converted
@@ -44,7 +44,7 @@ namespace ConvertCoin.ViewModels
 
         [ObservableProperty]
         decimal amount;
-        
+
         [ObservableProperty]
         string amountSelectedCountry;
         [ObservableProperty]
@@ -53,20 +53,46 @@ namespace ConvertCoin.ViewModels
         [RelayCommand]
         async Task SwitchCountries()
         {
+
             Debug.WriteLine("SwitchCountries method called");
-            var exchangeRates = await ExchangeApi.GetRate(selectedItem);
-            Debug.WriteLine(exchangeRates);
-            MainThread.BeginInvokeOnMainThread(() =>
+
+            // Check if selectedItem or targetSelectedItem are null
+            if (string.IsNullOrEmpty(selectedItem) || string.IsNullOrEmpty(targetSelectedItem))
             {
-                Debug.WriteLine(exchangeRates.conversion_rates["CAD"]);
-                Debug.WriteLine("Updating UI with the exchange rate data");
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    // Display an error message
+                    ConvertedAmount = "Error: Please select both source and target currencies.";
+                });
+                return;
+            }
 
-                Result = (100 * exchangeRates.conversion_rates[selectedItem]).ToString();
-                Result = (amount * exchangeRates.conversion_rates[targetSelectedItem]).ToString();
-                ConvertedAmount = $"{amount} INR = {result} {selectedItem}";
+            try
+            {
+                // Fetch exchange rates
+                var exchangeRates = await ExchangeApi.GetRate(selectedItem);
+                Debug.WriteLine(exchangeRates);
 
-               
-            });
+                // Update the UI on the main thread
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    Debug.WriteLine(exchangeRates.conversion_rates["CAD"]);
+                    Debug.WriteLine("Updating UI with the exchange rate data");
+
+                    // Calculate and display the converted amount
+                    Result = (100 * exchangeRates.conversion_rates[selectedItem]).ToString();
+                    Result = (amount * exchangeRates.conversion_rates[targetSelectedItem]).ToString();
+                    ConvertedAmount = $"{amount} INR = {Result} {targetSelectedItem}";
+                });
+            }
+            catch (Exception ex)
+            {
+                // Handle any errors during the API call or conversion
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    ConvertedAmount = $"Error: {ex.Message}";
+                });
+            }
         }
         [RelayCommand]
         void Country() { }
@@ -82,8 +108,8 @@ namespace ConvertCoin.ViewModels
 
         [ObservableProperty]
         public string result;
-        
-     
+
+
 
 
     }

@@ -120,6 +120,7 @@
                            Grid.Row="0"
                            Grid.Column="1"
                            Text="{Binding Result, Mode=TwoWay}"
+                            IsReadOnly="True" 
                            Keyboard="Numeric"/>
                 </Grid>
 
