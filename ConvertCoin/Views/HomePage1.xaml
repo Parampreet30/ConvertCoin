@@ -109,7 +109,7 @@
                         <Picker x:Name="picker2"
                                Title="Select Currency"
                                 ItemsSource="{Binding Items}"
-                                SelectedItem="{Binding SelectedItem}">
+                                SelectedItem="{Binding TargetSelectedItem}">
                             
                         </Picker>
                     </HorizontalStackLayout>

@@ -78,6 +78,9 @@ namespace ConvertCoin.ViewModels
         public string selectedItem;
 
         [ObservableProperty]
+        public string targetSelectedItem;
+
+        [ObservableProperty]
         public string result;
         
      
