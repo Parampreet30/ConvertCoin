@@ -33,7 +33,15 @@ namespace ConvertCoin.ViewModels
             Items = new ObservableCollection<string>
             {
                 "CAD",
-                "INR"
+                "INR",
+                "AED",
+                "USD",
+                "BMD",
+                "EUR",
+                "CLP",
+                "DZD",
+                "PKR"
+
             };
             string Result;
             double Amount;
