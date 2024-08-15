@@ -54,7 +54,7 @@ namespace ConvertCoin.ViewModels
 
             if (success)
             {
-              //  await Shell.Current.GoToAsync($"///{nameof(Views.ActivityListView)}");
+                await Shell.Current.GoToAsync($"///{nameof(Views.HomePage1)}");
             }
         }
 
@@ -65,10 +65,10 @@ namespace ConvertCoin.ViewModels
 
             if (success)
             {
-              //  await Shell.Current.GoToAsync($"///{nameof(Views.ActivityListView)}");
+                await Shell.Current.GoToAsync($"///{nameof(Views.HomePage1)}");
             }
 
-            //await Shell.Current.GoToAsync($"///{nameof(Views.ActivityDetailsView)}?id={activity.Id}");
+            
         }
 
     }
